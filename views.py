@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from fieldtest.models import ContactForm, Services, ServiceInfo
+from mtainfo.models import Services, ServiceInfo
 from django.core.urlresolvers import reverse
 
 # Create your views here.
