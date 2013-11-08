@@ -2,6 +2,8 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'fieldtest/style.css' %}" />
 
+<p>Choose a service type</p>
+
 <select name="services" id="id_services">
 {% for choice in form.services.field.choices %}
   <option value="{{choice.0}}" 
@@ -11,18 +13,7 @@
 {% endfor %}
 </select>
 <input type="submit" value="Check Service Status" />
-  
-<ul>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ul>
 
-<ul>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-</ul>
 
 <ul>
 {% for status in form2.service_info.field.choices %}
