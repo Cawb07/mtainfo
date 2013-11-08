@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'fieldtest/style.css' %}" />
+
+
+  <select name="services" id="id_services">
+  {% for choice in form.services.field.choices %}
+    <option value="{{choice.0}}" 
+      {% ifequal form.my_choice_field.data choice.0 %}
+         checked="checked"
+      {% endifequal %}> {{choice.0}} </option>
+  {% endfor %}
+  </select>
+  <input type="submit" value="Check Service Status" />
+  
+
+
+<ul list-style-type="none">
+{% for status in form2.service_info.field.choices %}
+  <li list-style-type="none">
+    <input type="hidden" name="service_info" value="{{status.0}}"
+      {% ifequal form2.my_choice_field.data status.0 %}
+         checked="checked"
+      {% endifequal %}/>
+    <label for="">{{status.0}}</label>
+  </li>
+{% endfor %}
+</ul>
