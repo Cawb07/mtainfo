@@ -8,5 +8,4 @@ from mtainfo import views
 
 urlpatterns = patterns('',
     url(r'^$', views.choice, name='choice'),
-    url(r'^servicechoice/$', views.servicechoice, name='servicechoice')
 )

@@ -14,11 +14,11 @@ rootElem = tree.getroot()
 
 services = []
 for child in rootElem:
+    #print child
     services.append(child)
 
 def get_my_services():
     choices_list =[(services[x].tag, x-2) for x in range(2, 7)]
-    print choices_list
     return choices_list
 
 class Services(forms.Form):
@@ -26,15 +26,18 @@ class Services(forms.Form):
         super(Services, self).__init__()
         self.fields['services'] = forms.ChoiceField(
             choices=get_my_services())
-        #self.choice = self.fields['services'].choices
+        #self.choice = self.fields['services'].choices[c][0]
 
-def get_my_statuses():
+#serv = Services(0)
+#print serv.choice
+
+def get_my_statuses(s):
     statuses = []
     names = []
     #if type(Services.choice) == type("subway"):
     #    choice = Services.choice
     #else:
-    choice = "subway"
+    choice = s
     for service in services:
         if service.tag == choice:
             for line in service:
@@ -53,7 +56,10 @@ def get_my_statuses():
     return statuses_list
 
 class ServiceInfo(forms.Form):
-    def __init__(self):
+    def __init__(self, c):
         super(ServiceInfo, self).__init__()
         self.fields['service_info'] = forms.ChoiceField(
-            choices=get_my_statuses())
+            choices=get_my_statuses(c))
+
+serv2 = ServiceInfo("subway")
+#print serv2.fields['service_info'].choices

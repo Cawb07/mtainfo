@@ -1,28 +1,18 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from mtainfo.models import Services, ServiceInfo
 from django.core.urlresolvers import reverse
+from django.template import RequestContext
 
 # Create your views here.
 def choice(request):
     form = Services()
-    form2 = ServiceInfo()
+    s = request.POST.get('services', False)
+    ch = s
+    form2 = ServiceInfo(s)
     
-    return render(request, 'mtainfo/choice.html', {
+    c = RequestContext(request, {
         'form': form,
         'form2': form2,
     })
-
-c = ""
-def servicechoice(request, service_id):
-    s = get_object_or_404(Services, service_id)
-    selected_choice = s.choice_set.get(pk=request.Post['choice'])
-    c = selected_choice.text
-    
-    #return HttpResponseRedirect(reverse('fieldtest:choice', args=(s.id,), kwargs=None))
-
-class Selection:
-    def __init__(self):
-        self.choice = c
-    
-    
+    return render_to_response('mtainfo/choice.html', c)

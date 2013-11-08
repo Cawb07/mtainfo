@@ -4,16 +4,18 @@
 
 <p>Choose a service type</p>
 
-<select name="services" id="id_services">
-{% for choice in form.services.field.choices %}
-  <option value="{{choice.0}}" 
-    {% ifequal form.my_choice_field.data choice.0 %}
-       checked="checked"
-    {% endifequal %}> {{choice.0}} </option>
-{% endfor %}
-</select>
-<input type="submit" value="Check Service Status" />
-
+<form name="aform" action="" method='post'>
+  {% csrf_token %}
+  <select name="services">
+  {% for choice in form.services.field.choices %}
+    <option value="{{choice.0}}" 
+      {% ifequal form.my_choice_field.data choice.0 %}
+         checked="checked"
+      {% endifequal %}>{{choice.0}}</option>
+  {% endfor %}
+  </select>
+  <input type="submit" value="Check Service Status" />
+</form>
 
 <ul>
 {% for status in form2.service_info.field.choices %}
